@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/cjreeder/gin_test/handler"
 	"github.com/gin-gonic/gin"
 )
 
@@ -56,6 +57,11 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"Message": "OK"})
 		go async()
 		fmt.Printf("%s, I'm not waiting for you.......\n", hello)
+	})
+	router.POST("/handlertest", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{"Message": "Testing Handler from another package"})
+		go handler.AsyncHandler()
+		fmt.Printf("I am not waiting for the handler test......\n")
 	})
 
 	router.Run("localhost:8080")
