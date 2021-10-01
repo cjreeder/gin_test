@@ -1,4 +1,4 @@
-module main.go
+module github.com/cjreeder/gin_test
 
 go 1.16
 

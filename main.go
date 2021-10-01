@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/cjreeder/gin_test/handler"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -63,6 +64,10 @@ func main() {
 		go handler.AsyncHandler()
 		fmt.Printf("I am not waiting for the handler test......\n")
 	})
-
+	router.POST("/refloat/:deviceID", func(c *gin.Context) {
+		cCp := c.Copy()
+		go handler.RefloatByDeviceID(cCp)
+		c.JSON(http.StatusOK, gin.H{"Message": "Pushing change to handler"})
+	})
 	router.Run("localhost:8080")
 }
