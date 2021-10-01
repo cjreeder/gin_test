@@ -66,7 +66,7 @@ func main() {
 	})
 	router.POST("/refloat/:deviceID", func(c *gin.Context) {
 		cCp := c.Copy()
-		go handler.RefloatByDeviceID(cCp)
+		go handler.RefloatByDeviceID()
 		c.JSON(http.StatusOK, gin.H{"Message": "Pushing change to handler"})
 	})
 	router.Run("localhost:8080")
